@@ -1,4 +1,13 @@
-public class CarBuilder {
+interface Builder{
+    Builder id(int id);
+    Builder brand(String brand);
+    Builder model(String model);
+    Builder color(String color);
+    ProductEntity build();
+}
+
+
+public class CarBuilder implements Builder{
     int id;
     String brand;
     String model;
@@ -44,8 +53,10 @@ public class CarBuilder {
     }
 }
 
+interface ProductEntity{
 
-class Car {
+}
+class Car implements ProductEntity{
     int id;
     String brand;
     String model;
@@ -74,6 +85,27 @@ class Car {
     }
 }
 
-class CarDirector{
-    public buildLambo(Builder )
+class Director{
+    public static ProductEntity buildLambo(Builder builder){
+            return builder
+                .id(1)
+                .brand("Lamborguini")
+                .model("whatever")
+                .color("Blue")
+                .build();
+    }
+
+    public static ProductEntity buildFerrari(Builder builder){
+        return builder
+                .id(2)
+                .brand("Ferrari")
+                .model("whatever")
+                .color("Red")
+                .build();
+    }
+
+    public static void main(String[] args) {
+        Car car = (Car) Director.buildLambo(new CarBuilder());
+        System.out.println(car.getBrand());
+    }
 }

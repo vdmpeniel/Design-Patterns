@@ -5,10 +5,10 @@ public class Singleton {
 
     public static Singleton getInstance(){
         Singleton result = instance;
-        if (result != null) {
+        if (result == null) {
             synchronized (Singleton.class) {
                 result = instance;
-                if (result != null) {
+                if (result == null) {
                     instance = result = new Singleton();
                 }
             }
